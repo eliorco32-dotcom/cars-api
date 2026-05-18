@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CARS API</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cars Api</h1>
+      <p>The most amazing cars in the world</p>
+      <div class="top-bar">
+        <button id="homeBtn">Home</button>
+
+        <button id="showFavoritesBtn">
+          Favorites (<span id="favoriteCount">0</span>)
+        </button>
+
+        <button id="showCartBtn">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </header>
+
+    <section class="cars-container" id="carsContainer"></section>
+
+    <div class="overlay"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
