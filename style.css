@@ -30,7 +30,7 @@ h1 {
   font-size: 42px;
 }
 h2 {
-  color: #d40909;
+  color: white;
 }
 p {
   text-align: center;
@@ -73,10 +73,6 @@ select {
   row-gap: 20px;
 }
 .cars-container .card-car {
-  /* background-color: #222;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); */
   border: 1px solid #ddd;
   padding: 15px;
   margin: 10px;
@@ -219,4 +215,9 @@ button {
   font-size: 20px;
   z-index: 9999;
   transition: all 0.8s ease-in-out;
+}
+.price {
+  color: #00ff88;
+  font-weight: bold;
+  font-size: 18px;
 }

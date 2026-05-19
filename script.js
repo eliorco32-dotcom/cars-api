@@ -57,6 +57,7 @@ async function getCars() {
 }
 const PEXELS_API_KEY =
   "cD0CA8r3xfCGbe4jaAQYkkSGtxu159dB9iQRddViHLHNQdOzjkOL1SNG";
+const RAPID_API_KEY = " dfe392c534msh7a35eaf18e5d5c5p1451acjsnc558ede4c92a";
 // Load models + car images
 async function getModels(makeId, makeName) {
   try {
@@ -74,6 +75,12 @@ async function getModels(makeId, makeName) {
 
     for (const model of models) {
       const modelName = model.Model_Name;
+
+      let horsepower = "Unknown";
+      let engine = "Unknown";
+      let year = 2020;
+
+      const price = Math.floor(Math.random() * 40000) + 20000;
 
       let imageUrl =
         "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
@@ -99,6 +106,33 @@ async function getModels(makeId, makeName) {
       } catch (error) {
         console.log(error);
       }
+
+      // try {
+      //   const detailsResponse = await fetch(
+      //     `https://car-api2.p.rapidapi.com/api/models?make=${encodeURIComponent(makeName)}`,
+      //     {
+      //       method: "GET",
+      //       headers: {
+      //         "X-RapidAPI-Key": RAPID_API_KEY,
+      //         "X-RapidAPI-Host": "car-api2.p.rapidapi.com",
+      //       },
+      //     },
+      //   );
+
+      //   const detailsData = await detailsResponse.json();
+
+      //   if (detailsData.data?.length > 0) {
+      //     const details = detailsData.data[0];
+
+      //     horsepower = details.horsepower || "Unknown";
+
+      //     engine = details.engine || "Unknown";
+
+      //     year = details.year || "2020";
+      //   }
+      // } catch (error) {
+      //   console.log("RapidAPI Error:", error);
+      // }
 
       const div = document.createElement("div");
 
@@ -128,6 +162,8 @@ async function getModels(makeId, makeName) {
 ">
   <h3>${modelName}</h3>
 
+  <p class="price">$${price}</p>
+
   <button class="favorite-btn">
     ❤️
   </button>
@@ -146,9 +182,10 @@ async function getModels(makeId, makeName) {
           image: imageUrl,
           brand: makeName,
           MakeId: makeId,
+          price: price,
         };
 
-        flyToCart(e.target); // ❤️ האנימציה
+        flyToCart(e.target);
         addToFavorites(carData);
       };
 
@@ -160,6 +197,7 @@ async function getModels(makeId, makeName) {
           image: imageUrl,
           brand: makeName,
           MakeId: makeId,
+          price: price,
         };
 
         addToCart(carData);
@@ -181,6 +219,7 @@ function addToFavorites(car) {
     image: car.image,
     brand: car.brand,
     MakeId: car.MakeId,
+    price: car.price,
   };
 
   const exists = favorites.find((item) => item.id === carToSave.id);
@@ -201,6 +240,7 @@ function addToCart(car) {
     image: car.image,
     brand: car.brand,
     MakeId: car.MakeId,
+    price: car.price,
   };
 
   const exists = cart.find((item) => item.id === carToSave.id);
@@ -317,6 +357,8 @@ function showFavorites() {
 
         <p>${car.brand}</p>
 
+        <p class="price">$${car.price}</p>
+
        <button class="buy-btn">
          Buy
        </button>
@@ -340,6 +382,7 @@ function showFavorites() {
         image: car.image,
         brand: car.brand,
         MakeId: car.MakeId,
+        price: price,
       };
 
       addToCart(carData);
@@ -390,6 +433,8 @@ function showCart() {
         <h3>${car.model}</h3>
 
         <p>${car.brand}</p>
+
+        <p class="price">$${car.price}</p>
 
         <button class="remove-cart-btn">
           Remove
